@@ -1,0 +1,148 @@
+// OpsFlow 360 – Google Sheets Tab Schemas & Column Mappings
+
+export const SHEET_TABS = {
+  USERS: 'Users',
+  ROLES: 'Roles',
+  PERMISSIONS: 'Permissions',
+  USER_PERMISSIONS: 'UserPermissions',
+  INTERBANK_TRANSFERS: 'InterbankTransfers',
+  BENEFICIARIES: 'Beneficiaries',
+  VENDOR_PAYMENTS: 'VendorPayments',
+  PAYMENT_STATUS_HISTORY: 'PaymentStatusHistory',
+  APPROVAL_ACTIONS: 'ApprovalActions',
+  AUDIT_LOGS: 'AuditLogs',
+  NOTIFICATIONS: 'Notifications',
+  APP_SETTINGS: 'AppSettings',
+  SEQUENCE_COUNTERS: 'SequenceCounters',
+  DEPARTMENTS: 'Departments',
+  LOCATIONS: 'Locations',
+} as const;
+
+export const INTERBANK_COLUMNS = [
+  'Sheet No.',
+  'Timestamp',
+  'Transfer From',
+  'Transfer To',
+  'Purpose',
+  'Requested By',
+  'Site',
+  'Amount',
+  'Remarks',
+  'Status',
+  'Approval Timestamp',
+  'Interbank Transfer ID',
+  'Requested By User ID',
+  'Department',
+  'Priority',
+  'Attachment File IDs',
+  'Approval Level',
+  'Approval Remarks',
+  'Rejection Reason',
+  'Payment Reference Number',
+  'Processing Remarks',
+  'Completed Timestamp',
+  'Last Updated By',
+  'Last Updated At',
+  'Record Version',
+  'Active',
+  'Archived',
+] as const;
+
+export const BENEFICIARY_COLUMNS = [
+  'Sheet No.',
+  'Timestamp',
+  'Name of Beneficiary',
+  'Account No.',
+  'IFSC Code',
+  'Bank Name',
+  'Purpose',
+  'Cancelled Cheque URL',
+  'Remark',
+  'Status',
+  'Approval Timestamp',
+  'Beneficiary Entry',
+  'Beneficiary Entry Timestamp',
+  'Addition Status',
+  'Addition Timestamp',
+  'Beneficiary ID',
+  'Submitted By User ID',
+  'Department',
+  'Rejection Reason',
+  'Entry Reference Number',
+  'Entry Remarks',
+  'Last Updated By',
+  'Last Updated At',
+  'Record Version',
+  'Active',
+  'Archived',
+] as const;
+
+export const VENDOR_PAYMENT_COLUMNS = [
+  'Sheet No.',
+  'Timestamp',
+  'Vendor Name',
+  'Beneficiary ID',
+  'Bill No./PO',
+  'Purpose of Payment',
+  'Requested By',
+  'Site',
+  'Mode of Payment',
+  'PO / Bill / Invoice URL',
+  'Amount to Be Paid',
+  'Remark',
+  'Status',
+  'Approval Timestamp',
+  'Payment Entry',
+  'Payment Entry Timestamp',
+  'Payment Status',
+  'Payment Done Timestamp',
+  'Payment Remarks',
+  'Vendor Payment ID',
+  'Submitted By User ID',
+  'Department',
+  'Payment Reference Number',
+  'Rejection Reason',
+  'Approval Remarks',
+  'Payment Entry Remarks',
+  'Payment Verification Remarks',
+  'Payment Proof File IDs',
+  'Last Updated By',
+  'Last Updated At',
+  'Record Version',
+  'Active',
+  'Archived',
+] as const;
+
+export const AUDIT_LOG_COLUMNS = [
+  'Audit ID',
+  'Record Type',
+  'Record ID',
+  'Sheet No.',
+  'Action',
+  'Old Value JSON',
+  'New Value JSON',
+  'Old Status',
+  'New Status',
+  'Remarks',
+  'Performed By User ID',
+  'Performed By Name',
+  'User Role',
+  'Timestamp',
+  'IP Address',
+  'Device Information',
+  'Request ID',
+  'Module',
+  'Success Flag',
+] as const;
+
+/**
+ * Escapes values to prevent Google Sheets formula injection (=, +, -, @)
+ */
+export function sanitizeForSheet(val: unknown): string {
+  if (val === null || val === undefined) return '';
+  const str = String(val);
+  if (str.startsWith('=') || str.startsWith('+') || str.startsWith('-') || str.startsWith('@')) {
+    return `'${str}`;
+  }
+  return str;
+}

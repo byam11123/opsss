@@ -1,0 +1,6 @@
+{
+  "name": "OpsFlow 360 – Daily Operations Management System",
+  "description": "Enterprise Operations and Payment Management System featuring Interbank Transfers, Beneficiaries, Vendor Payments, IT Maintenance Checklist, Approvals, and Google Sheets Database integration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
